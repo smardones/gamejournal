@@ -9,7 +9,9 @@ const db = require('./config/connection')
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
-app.listen(PORT, () => {
-    console.log(`API server runing on port ${PORT}`);
-    // console.log(`Use GraphQL at http://localthost:${PORT}.${server.graphqlPath}`)
+db.once('open', () => {
+    app.listen(PORT, () => {
+        console.log(`API server runing on port ${PORT}`);
+        // console.log(`Use GraphQL at http://localthost:${PORT}.${server.graphqlPath}`)
+    });
 });
