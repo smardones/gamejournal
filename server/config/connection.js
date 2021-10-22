@@ -1,13 +1,8 @@
 const mongoose = require('mongoose');
 
 
-async function dbConnection() {
-    await    mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/gamejournal',
-        {    useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false
-        });
-}
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/gamejournal',)
+        .catch(err => console.log(err));
 
-module.exports = dbConnection;;
+
+module.exports = mongoose.connection;
