@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "if-env NODE_ENV=production && run start:prod || npm run start:dev",
+    "start:prod": "cd server && npm start",
+    "start: dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/smardones/gamejournal/issues"
   },
-  "homepage": "https://github.com/smardones/gamejournal#readme"
+  "homepage": "https://github.com/smardones/gamejournal#readme",
+  "dependencies": {
+    "concurrently": "^6.3.0"
+  }
 }
